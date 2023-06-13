@@ -1,0 +1,71 @@
+.wapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 4rem 0 2rem;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 6rem 1.5rem;
+  background: $gradientColor;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+
+  &--primary {
+    font-weight: 700;
+    background-color: $PrimaryColor;
+    color: white;
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $PrimaryColor;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  &--rounded {
+    border-radius: 10px;
+    padding: 17px 65px;
+  }
+
+  &--shadow {
+    position: relative;
+  }
+}
+
+.btn a {
+  color: $whiteColor;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: $SecondaryColor;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-family: $font;
+}
+
+@media screen and (max-width: 767px) {
+  .btn {
+    padding: 13px 26px;
+  }
+}
