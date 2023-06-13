@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: $whiteColorDeam;
+  width: 100%;
+  ;
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $blackColor;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 20px 0 30px;
+  }
+}

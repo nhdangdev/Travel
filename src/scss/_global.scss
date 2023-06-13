@@ -1,5 +1,6 @@
-.wapper {
-  max-width: 1440px;
+.wrapper {
+  // max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -13,27 +14,28 @@
   padding: 0 15px;
 }
 
-.icon {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
 .btn {
-  padding: 6rem 1.5rem;
+  padding: 15px 25px;
   background: $gradientColor;
-  border-radius: 3rem;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+
+  &:hover {
+    background: $SecondaryColor;
+  }
 
   &--primary {
-    font-weight: 700;
-    background-color: $PrimaryColor;
-    color: white;
+    font-weight: 600;
+    color: $whiteColor;
   }
 
   &--outline {
     background-color: transparent;
-    color: $PrimaryColor;
+    color: $SecondaryColor;
     font-weight: 500;
     border: 1px solid;
   }
@@ -48,24 +50,9 @@
   }
 }
 
-.btn a {
-  color: $whiteColor;
-  font-weight: 500;
-}
-
-.btn:hover {
-  background: $SecondaryColor;
-}
-
 button {
   cursor: pointer;
   outline: none;
   border: none;
   font-family: $font;
-}
-
-@media screen and (max-width: 767px) {
-  .btn {
-    padding: 13px 26px;
-  }
 }
