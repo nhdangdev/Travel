@@ -1,15 +1,13 @@
 .navbar {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 0 40px;
-
-  &.is-show {
-    display: block;
+  &-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 0 40px;
   }
 
   &-link {
-    color: $blackColor;
+    color: $textColor;
     display: inline-block;
   }
 
@@ -22,12 +20,16 @@
   &-close {
     font-size: 30px;
     cursor: pointer;
+    display: none;
+  }
+
+  &-item--btn {
+    display: none;
   }
 }
 
 // Hover với media
 @media (hover:hover) {
-
   .navbar-link {
     position: relative;
     transition: all 0.2s linear;
@@ -56,76 +58,88 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .navbar-btn {
-    display: block;
-  }
-
-  .navbar-item--btn {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .header-logo {
     gap: 10px;
+    font-size: 35px;
   }
 
   .navbar {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: $whiteColor;
-    width: 300px;
-    z-index: 99;
-    border-left: 1px solid $SecondaryColor;
-    flex-direction: column;
-    gap: 10px 0;
-    padding-top: 90px;
-    align-items: stretch;
-    transform: translateX(100%);
-    will-change: transform;
-    transition: all 0.2s linear;
+    position: absolute;
+    top: calc(30px + 88px);
+    left: 50%;
+    width: 80%;
+    gap: 0 15px;
+    border-radius: 10px;
+    transform: translate(100%);
+    box-shadow: 0 2px 4px rgba(2, 15, 29, 0.9);
+    transition: .3s ease-in-out;
 
     &.is-show {
-      transform: translateX(0);
+      transform: translate(-50%);
     }
-  }
 
-  .navbar-link {
-    display: block;
-    width: 100%;
-    padding: 20px;
-  }
+    &-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 30px;
+      margin-top: 30px;
+      white-space: nowrap;
+    }
 
-  .navbar-toggle {
-    display: flex;
-    justify-content: end;
-    font-size: 40px;
-    color: $blackColor;
-    cursor: pointer;
-  }
+    &-link {
+      width: 100%;
+      padding: 0 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-  .navbar-item--btn {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0 20px;
-  }
+    &-toggle {
+      display: flex;
+      justify-content: end;
+      font-size: 30px;
+      color: $blackColor;
+      cursor: pointer;
+    }
 
-  .navbar-btn {
-    display: none;
-  }
-}
 
-@media screen and (max-width: 830px) {
-  .navbar {
-    gap: 0 25px;
-  }
+    &-item.navbar-item--btn {
+      display: inline-flex;
 
-  .navbar-btn {
-    font-size: 15px;
+      & a {
+        padding: 12px 15px;
+        font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 30px;
+        border: 5px solid $blackColor;
+        box-shadow: 0 0 0 10px $whiteColor;
+        transition: 0.5s;
+
+        &:hover {
+          letter-spacing: 0.2rem;
+          background: $SecondaryColor;
+        }
+      }
+    }
+
+    &-btn {
+      display: none;
+    }
+
+    &-close {
+      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 5%;
+      font-size: 30px;
+      color: $PrimaryColor;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 }

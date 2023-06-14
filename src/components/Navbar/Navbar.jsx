@@ -4,65 +4,52 @@ import { IonIcon } from "@ionic/react";
 import { planetOutline, closeCircle } from "ionicons/icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-  // Toggle navigation Bar
-  // const [show, setShow] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  // Toggle Navbar
+  const [active, setActive] = useState("navbar");
+  const handleShowNav = () => {
+    setActive("navbar is-show");
+  };
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        !menuRef.current.contains(event.target) &&
-        event.target.className !== "navbar-toggle"
-      ) {
-        setIsMenuOpen(false);
-      }
-    }
-
-    window.addEventListener("click", handleClickOutside);
-
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  // Remove Navbar
+  const removeNav = () => {
+    setActive("navbar");
+  };
 
   return (
     <div className="wrapper">
       <header className="header">
         <div className="container">
           <div className="header-container">
-            <h1 className="header-logo">
-              <IonIcon icon={planetOutline} />
+            <div className="header-logo">
+              <IonIcon icon={planetOutline} className="icon" />
               Travel.
-            </h1>
-            <ul
-              className={`navbar ${isMenuOpen ? "is-show" : ""}`}
-              ref={menuRef}
-            >
-              <li className="navbar-item">
-                <a href="#" className="navbar-link">
-                  Home
-                </a>
-              </li>
-              <li className="navbar-item">
-                <a href="#" className="navbar-link">
-                  About
-                </a>
-              </li>
-              <li className="navbar-item">
-                <a href="#" className="navbar-link">
-                  Shop
-                </a>
-              </li>
-              <li className="navbar-item">
-                <a href="#" className="navbar-link">
-                  News
-                </a>
-              </li>
-              {/* <div className="dropdown">
+            </div>
+            <div className={active}>
+              <ul className="navbar-list">
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Home
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    About
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Shop
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    News
+                  </a>
+                </li>
+                {/* <div className="dropdown">
                 <li className="dropdown-select navbar-item">
                   <a href="#" className="dropdown-selected navbar-link">
                     Pages
@@ -75,31 +62,28 @@ const Navbar = () => {
                   <div className="dropdown__item">Tester</div>
                 </div>
               </div> */}
-              <li className="navbar-item">
-                <a href="#" className="navbar-link">
-                  Contact
-                </a>
-              </li>
-              <li className="navbar-item navbar-item--btn">
-                <a href="#" className="btn btn--primary">
-                  Book Now
-                </a>
-              </li>
-            </ul>
-            {/* <div className="navbar-close">
-              <IonIcon icon={closeCircle} />
-              <FontAwesomeIcon icon={faClose} />
-            </div> */}
-            <div
-              className="navbar-toggle"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <FontAwesomeIcon icon={faBars} />
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Contact
+                  </a>
+                </li>
+                <li className="navbar-item navbar-item--btn">
+                  <a href="#" className="btn btn--primary">
+                    Book Now
+                  </a>
+                </li>
+                <div className="navbar-close" onClick={removeNav}>
+                  <IonIcon icon={closeCircle} />
+                </div>
+              </ul>
             </div>
             <div className="navbar-btn">
               <a href="#" className="btn btn--primary">
                 Book Now
               </a>
+            </div>
+            <div className="navbar-toggle" onClick={handleShowNav}>
+              <FontAwesomeIcon icon={faBars} />
             </div>
           </div>
         </div>

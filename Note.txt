@@ -1,0 +1,294 @@
+.navbar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: $whiteColor;
+    width: 300px;
+    z-index: 99;
+    flex-direction: column;
+    gap: 10px 0;
+    padding-top: 90px;
+    align-items: stretch;
+    transform: translateX(100%);
+    will-change: transform;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(29, 105, 187, 0.9);
+
+    ============================
+    .navbar {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0 40px;
+
+  &-link {
+    color: $blackColor;
+    display: inline-block;
+  }
+
+  &-toggle {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-close {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+  }
+
+  &-item--btn {
+    display: none;
+  }
+}
+
+// Hover với media
+@media (hover:hover) {
+
+  .navbar-link {
+    position: relative;
+    transition: all 0.2s linear;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: auto;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background-color: $PrimaryColor;
+      transition: all 0.2s linear;
+    }
+
+    &:hover {
+      color: $PrimaryColor;
+
+      &::after {
+        width: 100%;
+        left: 0;
+        right: auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header-logo {
+    gap: 10px;
+    font-size: 35px;
+  }
+
+  .navbar {
+    display: flex;
+    gap: 0 15px;
+    position: absolute;
+    top: calc(30px + 88px);
+    left: 50%;
+    width: 80%;
+    border-radius: 10px;
+    transform: translate(100%);
+    box-shadow: 0 2px 4px rgba(2, 15, 29, 0.9);
+    transition: .3s ease-in-out;
+
+    &.is-show {
+      transform: translate(-50%);
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 30px;
+      margin-top: 30px;
+      white-space: nowrap;
+    }
+
+    &-link {
+      display: block;
+      width: 100%;
+      padding: 0 10px;
+      font-size: 18px;
+      color: $textColor;
+      font-weight: 600;
+    }
+
+    &-toggle {
+      display: flex;
+      justify-content: end;
+      font-size: 30px;
+      color: $blackColor;
+      cursor: pointer;
+    }
+
+    &-item-btn {
+      display: inline-block;
+
+      & a {
+        padding: 12px 15px;
+        font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 30px;
+      }
+    }
+
+    &-btn {
+      display: none;
+    }
+
+    &-close {
+      display: inline-block;
+      position: absolute;
+      top: 20px;
+      right: 5%;
+      font-size: 30px;
+      color: $PrimaryColor;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .navbar-btn {
+    font-size: 15px;
+  }
+
+  .is-show {
+    display: block;
+  }
+}
+
+=========================================
+.header {
+  position: fixed;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: $whiteColorDeam;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(2, 15, 29, 0.9);
+
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    font-size: 40px;
+    display: flex;
+    cursor: pointer;
+    color: $blackColor;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 20px 0 30px;
+  }
+}
+===========================================
+import React, { useState, useEffect, useRef } from "react";
+import "./navbar.css";
+import { IonIcon } from "@ionic/react";
+import { planetOutline, closeCircle } from "ionicons/icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+const Navbar = () => {
+  // Toggle Navbar
+  const [active, setActive] = useState("navbar");
+  const handleShowNav = () => {
+    setActive("navbar is-show");
+  };
+
+  // Remove Navbar
+  const removeNav = () => {
+    setActive("navbar");
+  };
+
+  return (
+    <div className="wrapper">
+      <header className="header">
+        <div className="container">
+          <div className="header-container">
+            <h1 className="header-logo">
+              <IonIcon icon={planetOutline} className="icon" />
+              Travel.
+            </h1>
+            <div className={active}>
+              <ul className="navbar-list">
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Home
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    About
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Shop
+                  </a>
+                </li>
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    News
+                  </a>
+                </li>
+                {/* <div className="dropdown">
+                <li className="dropdown-select navbar-item">
+                  <a href="#" className="dropdown-selected navbar-link">
+                    Pages
+                  </a>
+                  <i className="fa fa-caret-down dropdown-caret"></i>
+                </li>
+                <div className="dropdown-list">
+                  <div className="dropdown__item">Dev</div>
+                  <div className="dropdown__item">Design</div>
+                  <div className="dropdown__item">Tester</div>
+                </div>
+              </div> */}
+                <li className="navbar-item">
+                  <a href="#" className="navbar-link">
+                    Contact
+                  </a>
+                </li>
+                <li className="navbar-item navbar-item--btn">
+                  <a href="#" className="btn btn--primary">
+                    Book Now
+                  </a>
+                </li>
+                <div className="navbar-close" onClick={removeNav}>
+                  <IonIcon icon={closeCircle} />
+                </div>
+              </ul>
+            </div>
+            <div className="navbar-toggle" onClick={handleShowNav}>
+              <FontAwesomeIcon icon={faBars} />
+            </div>
+            <div className="navbar-btn">
+              <a href="#" className="btn btn--primary">
+                Book Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  );
+};
+
+export default Navbar;
